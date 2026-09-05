@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#f7efff" />
+<title>Scatterbrain Grandma NeeDoh Scout</title>
+<style>
+:root{
+  --bg:#fbf8ff;
+  --card:#ffffff;
+  --text:#24222a;
+  --muted:#756f7f;
+  --purple:#8b6cff;
+  --purple2:#efe9ff;
+  --pink:#ff7eb6;
+  --mint:#c9f3df;
+  --yellow:#ffe89b;
+  --blue:#dceeff;
+  --border:#ebe7f0;
+  --good:#138a57;
+  --shadow:0 10px 28px rgba(71,55,99,.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:linear-gradient(180deg,#fffafd 0%,var(--bg) 100%);
+  color:var(--text)
+}
+.wrap{max-width:560px;margin:0 auto;padding:16px 14px 42px}
+.hero{
+  background:linear-gradient(135deg,#fff,#f3edff 52%,#fff2f8);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden
+}
+.hero:after{
+  content:"🧊 ✨ 📍";
+  position:absolute;
+  right:14px;
+  top:12px;
+  opacity:.18;
+  font-size:34px;
+  transform:rotate(5deg)
+}
+.brand{font-size:13px;font-weight:900;letter-spacing:.08em;color:#6b57c7;text-transform:uppercase}
+h1{font-size:29px;line-height:1.05;margin:5px 0 7px}
+.sub{margin:0;color:var(--muted);line-height:1.45}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:16px;
+  margin-top:13px;
+  box-shadow:0 5px 18px rgba(67,52,92,.045)
+}
+.card.soft-purple{background:#fcfaff}
+.card.soft-pink{background:#fffafd}
+.card.soft-mint{background:#fbfffd}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.section-title strong{font-size:16px}
+.small{font-size:12px;color:var(--muted);line-height:1.4}
+label{display:block;font-size:12px;font-weight:850;margin:11px 0 6px}
+input,select,textarea{
+  width:100%;
+  padding:12px 12px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  font-size:15px;
+  background:#fff;
+  color:var(--text)
+}
+textarea{min-height:82px;font-family:inherit;resize:vertical}
+.row{display:flex;gap:8px}
+.row>*{flex:1}
+button{
+  border:0;
+  border-radius:13px;
+  padding:12px 13px;
+  font-size:14px;
+  font-weight:850;
+  cursor:pointer
+}
+.primary{background:var(--purple);color:white}
+.secondary{background:var(--purple2);color:#533cc7}
+.pink{background:#ffe4f0;color:#b13c72}
+.mint{background:#def7eb;color:#15734a}
+.yellow{background:#fff2ba;color:#785d00}
+.full{width:100%}
+.pill{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:850;
+  background:#eee9ff;
+  color:#5d4bc4
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checkgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.check{
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:10px;
+  background:#fff;
+  font-size:13px;
+  display:flex;
+  gap:8px;
+  align-items:center
+}
+.check input{width:18px;height:18px}
+.profile-list,.wish-list,.sighting-list,.release-list{display:grid;gap:8px;margin-top:10px}
+.item{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:11px;
+  background:#fff
+}
+.item strong{display:block}
+.item .meta{font-size:12px;color:var(--muted);margin-top:3px}
+.inline-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.inline-actions button{padding:7px 9px;font-size:12px}
+.status{font-size:12px;color:var(--muted);min-height:17px;margin-top:7px}
+.empty{text-align:center;color:var(--muted);padding:16px 4px}
+.nav{
+  position:sticky;
+  bottom:10px;
+  z-index:4;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  margin-top:16px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--border);
+  padding:7px;
+  border-radius:18px;
+  box-shadow:var(--shadow)
+}
+.nav button{padding:9px 5px;background:#f7f4fb;color:#5f5870;font-size:11px}
+.nav button.active{background:var(--purple);color:#fff}
+.tab{display:none}
+.tab.active{display:block}
+.family-banner{
+  margin-top:12px;
+  padding:10px 12px;
+  border-radius:15px;
+  background:linear-gradient(90deg,#fff0f7,#f2efff);
+  border:1px dashed #ddccef;
+  font-size:13px
+}
+.range-note{font-size:11px;color:var(--muted);margin-top:5px}
+.footer{text-align:center;color:var(--muted);font-size:11px;line-height:1.5;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand">Scatterbrain Grandma Special</div>
+    <h1>🧊 NeeDoh Scout</h1>
+    <p class="sub">A family-friendly radar for NeeDoh wish lists, nearby sightings, favorite stores, and future live drop alerts.</p>
+    <div class="family-banner">💜 Built for the whole crew: Grandma can hunt, grandkids can wish-list, and everybody can report finds.</div>
+  </header>
+
+  <main>
+    <section id="homeTab" class="tab active">
+      <div class="card soft-purple">
+        <div class="section-title">
+          <strong>📍 Search Area</strong><span class="pill">HOME BASE</span>
+        </div>
+        <div class="row">
+          <input id="place" placeholder="Big Lake, MN or ZIP" />
+          <button class="secondary" id="locBtn">Use Location</button>
+        </div>
+        <div id="locStatus" class="status"></div>
+        <label>Search radius</label>
+        <select id="radius">
+          <option>10 miles</option><option selected>25 miles</option><option>50 miles</option><option>100 miles</option>
+        </select>
+      </div>
+
+      <div class="card soft-pink">
+        <div class="section-title">
+          <strong>🔥 Alert Style</strong><span class="pill">PICKY MODE</span>
+        </div>
+        <div class="checkgrid">
+          <label class="check"><input type="checkbox" id="alertAnything">Anything new</label>
+          <label class="check"><input type="checkbox" id="alertRare" checked>Rare / new only</label>
+          <label class="check"><input type="checkbox" id="alertWatch" checked>Watchlist only</label>
+          <label class="check"><input type="checkbox" id="alertNearby" checked>Nearby only</label>
+        </div>
+      </div>
+
+      <div class="card soft-mint">
+        <div class="section-title">
+          <strong>🏪 Stores to Watch</strong><span class="pill">FAVORITES</span>
+        </div>
+        <div class="checkgrid">
+          <label class="check"><input type="checkbox" class="store" value="Five Below" checked>Five Below</label>
+          <label class="check"><input type="checkbox" class="store" value="Target" checked>Target</label>
+          <label class="check"><input type="checkbox" class="store" value="Walmart" checked>Walmart</label>
+          <label class="check"><input type="checkbox" class="store" value="Local Toy Stores" checked>Local Toy Stores</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <strong>🚗 Distance + Map</strong><span class="pill">READY</span>
+        </div>
+        <p class="small">When live inventory is connected, every find can show distance, store, price, and a directions button.</p>
+        <button class="secondary full" id="mapPreview">Open Search Area in Maps</button>
+      </div>
+    </section>
+
+    <section id="familyTab" class="tab">
+      <div class="card soft-purple">
+        <div class="section-title">
+          <strong>👨‍👩‍👧 Family Profiles</strong><span class="pill">SHARED</span>
+        </div>
+        <div class="grid2">
+          <input id="profileName" placeholder="Name, e.g. Lisa" />
+          <input id="profileEmoji" placeholder="Emoji, e.g. 💜" />
+        </div>
+        <button class="primary full" id="addProfile" style="margin-top:8px">Add Family Profile</button>
+        <div id="profileList" class="profile-list"></div>
+      </div>
+
+      <div class="card soft-pink">
+        <div class="section-title">
+          <strong>⭐ Wish List / Must Find</strong><span class="pill">PRIORITY</span>
+        </div>
+        <select id="wishProfile"></select>
+        <label>What are you looking for?</label>
+        <input id="wishName" placeholder="Nice Cube pink, Squishy Dumpling, Dream Drop..." />
+        <div class="grid2">
+          <div>
+            <label>Color / variant</label>
+            <input id="wishVariant" placeholder="Pink, mystery, specific face..." />
+          </div>
+          <div>
+            <label>Max price</label>
+            <input id="wishPrice" type="number" min="0" step="0.01" placeholder="$15" />
+          </div>
+        </div>
+        <label>Priority</label>
+        <select id="wishPriority"><option>Must Find</option><option>Would Love</option><option>Just Watching</option></select>
+        <label>Notes</label>
+        <textarea id="wishNotes" placeholder="Authentic Schylling only, any color except blue, gift for granddaughter..."></textarea>
+        <button class="pink full" id="addWish">Add to Wish List</button>
+        <div id="wishList" class="wish-list"></div>
+      </div>
+    </section>
+
+    <section id="foundTab" class="tab">
+      <div class="card soft-mint">
+        <div class="section-title">
+          <strong>✅ Found It Here</strong><span class="pill">FAMILY SIGHTING</span>
+        </div>
+        <input id="foundItem" placeholder="What NeeDoh did you see?" />
+        <div class="grid2">
+          <input id="foundStore" placeholder="Store" />
+          <input id="foundCity" placeholder="City" />
+        </div>
+        <div class="grid2">
+          <input id="foundPrice" placeholder="Price" />
+          <input id="foundTime" placeholder="When? e.g. Today 2:15 PM" />
+        </div>
+        <label>Photo note</label>
+        <input id="foundPhoto" type="file" accept="image/*" />
+        <textarea id="foundNotes" placeholder="Shelf was full, only 2 pink left, display near checkout..."></textarea>
+        <button class="mint full" id="saveFound">Save Family Sighting</button>
+        <div class="small" style="margin-top:7px">Photo files stay on the device in this version. The sighting details are saved locally.</div>
+        <div id="sightingList" class="sighting-list"></div>
+      </div>
+    </section>
+
+    <section id="newsTab" class="tab">
+      <div class="card">
+        <div class="section-title">
+          <strong>✨ New Release Feed</strong><span class="pill">COMING LIVE</span>
+        </div>
+        <p class="small">This section is ready for automatic Schylling/new-product updates once the online version is connected.</p>
+        <div id="releaseList" class="release-list">
+          <div class="item"><strong>New releases will appear here</strong><div class="meta">Product • release date • official source • “add to watchlist”</div></div>
+        </div>
+      </div>
+
+      <div class="card soft-purple">
+        <div class="section-title">
+          <strong>🔔 Notification Preferences</strong><span class="pill">PER PERSON</span>
+        </div>
+        <select id="notifyProfile"></select>
+        <div class="checkgrid">
+          <label class="check"><input type="checkbox" id="notifyPush" checked>Push alerts</label>
+          <label class="check"><input type="checkbox" id="notifyRareOnly" checked>Rare only</label>
+          <label class="check"><input type="checkbox" id="notifyPrice">Price drops</label>
+          <label class="check"><input type="checkbox" id="notifyFamily" checked>Family sightings</label>
+        </div>
+        <button class="secondary full" id="saveNotify" style="margin-top:8px">Save Notification Settings</button>
+        <div id="notifyStatus" class="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="nav">
+    <button class="active" data-tab="homeTab">🏠<br>Scout</button>
+    <button data-tab="familyTab">👨‍👩‍👧<br>Family</button>
+    <button data-tab="foundTab">✅<br>Found It</button>
+    <button data-tab="newsTab">✨<br>New</button>
+  </nav>
+
+  <div class="footer">
+    Scatterbrain Grandma NeeDoh Scout 💜<br>
+    This version saves settings on the current device. Shared family syncing, real-time retailer inventory, and push notifications require the online backend we discussed.
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const LS = {
+  get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k)) ?? d}catch{return d}},
+  set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))
+};
+
+document.querySelectorAll(".nav button").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    btn.classList.add("active");
+    $(btn.dataset.tab).classList.add("active");
+  };
+});
+
+$("place").value = LS.get("sg_place","");
+$("radius").value = LS.get("sg_radius","25 miles");
+$("place").oninput = ()=>LS.set("sg_place",$("place").value);
+$("radius").onchange = ()=>LS.set("sg_radius",$("radius").value);
+
+$("locBtn").onclick=()=>{
+  if(!navigator.geolocation){$("locStatus").textContent="Location is not available in this browser.";return;}
+  $("locStatus").textContent="Getting your location…";
+  navigator.geolocation.getCurrentPosition(pos=>{
+    LS.set("sg_coords",{lat:pos.coords.latitude,lon:pos.coords.longitude});
+    $("place").value="Current location";
+    LS.set("sg_place","Current location");
+    $("locStatus").textContent="📍 Location saved.";
+  },()=>{$("locStatus").textContent="Location permission was not granted. Type a city or ZIP instead.";});
+};
+
+["alertAnything","alertRare","alertWatch","alertNearby","notifyPush","notifyRareOnly","notifyPrice","notifyFamily"].forEach(id=>{
+  const saved=LS.get("sg_"+id,null);
+  if(saved!==null) $(id).checked=saved;
+  $(id).onchange=()=>LS.set("sg_"+id,$(id).checked);
+});
+
+document.querySelectorAll(".store").forEach(c=>{
+  const savedStores=LS.get("sg_stores",["Five Below","Target","Walmart","Local Toy Stores"]);
+  c.checked=savedStores.includes(c.value);
+  c.onchange=()=>{
+    LS.set("sg_stores",[...document.querySelectorAll(".store:checked")].map(x=>x.value));
+  };
+});
+
+$("mapPreview").onclick=()=>{
+  const place=$("place").value.trim();
+  if(!place){alert("Enter a city or ZIP first.");return;}
+  window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent("toy stores near "+place),"_blank");
+};
+
+function profiles(){return LS.get("sg_profiles",[{name:"Lisa",emoji:"💜"}]);}
+function setProfiles(v){LS.set("sg_profiles",v);renderProfiles();syncProfileSelects();}
+function renderProfiles(){
+  const box=$("profileList"); box.innerHTML="";
+  profiles().forEach((p,i)=>{
+    const d=document.createElement("div"); d.className="item";
+    d.innerHTML=`<strong>${p.emoji||"🙂"} ${p.name}</strong><div class="meta">Personal wish list + notification preferences</div>
+      <div class="inline-actions"><button class="secondary" onclick="removeProfile(${i})">Remove</button></div>`;
+    box.appendChild(d);
+  });
+}
+window.removeProfile=i=>{
+  const ps=profiles(); if(ps.length===1){alert("Keep at least one family profile.");return;}
+  ps.splice(i,1); setProfiles(ps);
+};
+$("addProfile").onclick=()=>{
+  const name=$("profileName").value.trim(); if(!name)return;
+  const ps=profiles(); ps.push({name,emoji:$("profileEmoji").value.trim()||"🙂"}); setProfiles(ps);
+  $("profileName").value=""; $("profileEmoji").value="";
+};
+function syncProfileSelects(){
+  ["wishProfile","notifyProfile"].forEach(id=>{
+    const sel=$(id); const current=sel.value; sel.innerHTML="";
+    profiles().forEach(p=>{const o=document.createElement("option");o.value=p.name;o.textContent=(p.emoji||"🙂")+" "+p.name;sel.appendChild(o);});
+    if([...sel.options].some(o=>o.value===current)) sel.value=current;
+  });
+}
+renderProfiles(); syncProfileSelects();
+
+function wishes(){return LS.get("sg_wishes",[])}
+function renderWishes(){
+  const box=$("wishList"); box.innerHTML="";
+  const ws=wishes();
+  if(!ws.length){box.innerHTML='<div class="empty">No wish-list items yet.</div>';return;}
+  ws.forEach((w,i)=>{
+    const d=document.createElement("div"); d.className="item";
+    d.innerHTML=`<strong>⭐ ${w.name}</strong><div class="meta">${w.profile} • ${w.priority}${w.variant? " • "+w.variant:""}${w.price? " • max $"+w.price:""}</div>
+    ${w.notes?`<div class="meta">${w.notes}</div>`:""}
+    <div class="inline-actions"><button class="yellow" onclick="toggleMust(${i})">${w.priority==="Must Find"?"Must Find ✓":"Make Must Find"}</button><button class="secondary" onclick="removeWish(${i})">Remove</button></div>`;
+    box.appendChild(d);
+  });
+}
+window.removeWish=i=>{const ws=wishes();ws.splice(i,1);LS.set("sg_wishes",ws);renderWishes();}
+window.toggleMust=i=>{const ws=wishes();ws[i].priority="Must Find";LS.set("sg_wishes",ws);renderWishes();}
+$("addWish").onclick=()=>{
+  const name=$("wishName").value.trim(); if(!name)return;
+  const ws=wishes(); ws.push({
+    profile:$("wishProfile").value,name,variant:$("wishVariant").value.trim(),
+    price:$("wishPrice").value.trim(),priority:$("wishPriority").value,notes:$("wishNotes").value.trim()
+  });
+  LS.set("sg_wishes",ws); renderWishes();
+  ["wishName","wishVariant","wishPrice","wishNotes"].forEach(id=>$(id).value="");
+};
+renderWishes();
+
+function sightings(){return LS.get("sg_sightings",[])}
+function renderSightings(){
+  const box=$("sightingList"); box.innerHTML="";
+  const ss=sightings();
+  if(!ss.length){box.innerHTML='<div class="empty">No family sightings yet.</div>';return;}
+  ss.slice().reverse().forEach((s,rev)=>{
+    const i=ss.length-1-rev;
+    const d=document.createElement("div"); d.className="item";
+    d.innerHTML=`<strong>✅ ${s.item}</strong><div class="meta">${s.store||"Store not listed"}${s.city?" • "+s.city:""}${s.price?" • "+s.price:""}${s.time?" • "+s.time:""}</div>
+    ${s.notes?`<div class="meta">${s.notes}</div>`:""}<div class="inline-actions"><button class="secondary" onclick="removeSighting(${i})">Remove</button></div>`;
+    box.appendChild(d);
+  });
+}
+window.removeSighting=i=>{const ss=sightings();ss.splice(i,1);LS.set("sg_sightings",ss);renderSightings();}
+$("saveFound").onclick=()=>{
+  const item=$("foundItem").value.trim(); if(!item)return;
+  const ss=sightings(); ss.push({item,store:$("foundStore").value.trim(),city:$("foundCity").value.trim(),price:$("foundPrice").value.trim(),time:$("foundTime").value.trim(),notes:$("foundNotes").value.trim()});
+  LS.set("sg_sightings",ss);renderSightings();
+  ["foundItem","foundStore","foundCity","foundPrice","foundTime","foundNotes"].forEach(id=>$(id).value="");
+  $("foundPhoto").value="";
+};
+renderSightings();
+
+$("saveNotify").onclick=()=>{
+  const profile=$("notifyProfile").value;
+  const prefs=LS.get("sg_profile_notify",{});
+  prefs[profile]={push:$("notifyPush").checked,rare:$("notifyRareOnly").checked,price:$("notifyPrice").checked,family:$("notifyFamily").checked};
+  LS.set("sg_profile_notify",prefs);
+  $("notifyStatus").textContent="✅ Saved for "+profile+".";
+};
+$("notifyProfile").onchange=()=>{
+  const prefs=LS.get("sg_profile_notify",{})[$("notifyProfile").value];
+  if(!prefs)return;
+  $("notifyPush").checked=!!prefs.push;$("notifyRareOnly").checked=!!prefs.rare;$("notifyPrice").checked=!!prefs.price;$("notifyFamily").checked=!!prefs.family;
+};
+</script>
+</body>
+</html>
